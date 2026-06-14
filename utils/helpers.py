@@ -1,4 +1,5 @@
 import pandas as pd
+from plyer import notification
 def pre_process(data):
     data = data.copy()
 
@@ -26,3 +27,6 @@ def get_x_y(data):
     y = data['class']
 
     return x, y
+
+def train_finish_notification():
+    notification.notify(title='Training Done', message='TRAINING DONE ٩(^‿^)۶', timeout=5)
