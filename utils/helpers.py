@@ -30,3 +30,15 @@ def get_x_y(data):
 
 def train_finish_notification():
     notification.notify(title='Training Done', message='TRAINING DONE ٩(^‿^)۶', timeout=5)
+
+
+def gen_submission(y_pred, filename):
+    test_dt = pd.read_csv('../data/test.csv')
+
+    labels = {0: 'GALAXY', 1: 'QSO', 2: 'STAR'}
+    submission = pd.DataFrame({
+        'id': test_dt['id'],
+        'class': [labels[p] for p in y_pred]
+    })
+    submission.to_csv(f'../data/submissions/{filename}.csv', index=False)
+    print(submission['class'].value_counts())
